@@ -1,0 +1,16 @@
+perfectdeal-api-py3.12alex@Mac-001 perfectdeal-api % tree     
+.
+├── app
+│   ├── __pycache__
+│   │   └── main.cpython-312.pyc
+│   ├── Dockerfile
+│   ├── main.py
+│   ├── Makefile
+│   ├── poetry.lock
+│   ├── pyproject.toml
+│   └── requirements.txt
+├── doc
+│   └── tips.md
+├── docker-compose.yml
+├── Makefile
+└── Tree

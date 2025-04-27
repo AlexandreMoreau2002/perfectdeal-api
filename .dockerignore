@@ -1,0 +1,18 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local config
+.env
+.env.*
+*.log

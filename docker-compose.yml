@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  perfectdeal_api:
+    build:
+      context: ./app
+    container_name: perfectdeal_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    environment:
+      - ENV=development
+    working_dir: /app
+    command: poetry run uvicorn main:app --host 0.0.0.0 --port 8000 --reload
