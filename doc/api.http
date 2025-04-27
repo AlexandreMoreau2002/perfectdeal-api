@@ -3,3 +3,6 @@ GET {{baseUrl}}/
 
 ### Swagger
 GET {{baseUrl}}/docs
+
+### Redoc
+GET {{baseUrl}}/redoc
