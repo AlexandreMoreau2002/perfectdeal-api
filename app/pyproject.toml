@@ -10,6 +10,9 @@ packages = [{ include = "app" }]
 python = "^3.12"
 fastapi = "^0.115.12"
 uvicorn = "^0.34.2"
+strawberry-graphql = "^0.205.0"
+pydantic = "^2.11.3"
+graphql-core = "^3.2.3"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

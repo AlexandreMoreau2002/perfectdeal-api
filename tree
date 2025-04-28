@@ -1,16 +1,32 @@
-perfectdeal-api-py3.12alex@Mac-001 perfectdeal-api % tree     
+alex@MacBook-Alex perfectdeal-api % tree                                 
 .
 ├── app
 │   ├── __pycache__
 │   │   └── main.cpython-312.pyc
+│   ├── app_graphql
+│   │   ├── mutations
+│   │   │   └── annonce_mutation.py
+│   │   ├── queries
+│   │   │   └── annonce_query.py
+│   │   ├── schema.py
+│   │   └── types
+│   │       └── annonce_type.py
 │   ├── Dockerfile
 │   ├── main.py
 │   ├── Makefile
+│   ├── models
+│   │   └── annonce.py
 │   ├── poetry.lock
 │   ├── pyproject.toml
-│   └── requirements.txt
+│   └── services
+│       └── db
+│           └── memory.py
 ├── doc
+│   ├── api.http
 │   └── tips.md
 ├── docker-compose.yml
 ├── Makefile
-└── Tree
+├── readme.md
+└── tree
+
+11 directories, 18 files

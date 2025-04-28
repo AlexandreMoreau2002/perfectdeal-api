@@ -4,73 +4,64 @@ PerfectDeal API v1
 
 🎯 Objectif
 
-Développer une API FastAPI intelligente capable de :
+Développer une API FastAPI + GraphQL intelligente capable de :
 	•	Scraper automatiquement les annonces automobiles ciblées sur Leboncoin.
-	•	Filtrer selon des critères métier très précis (motorisation exacte, kilométrage, prix).
+	•	Filtrer selon des critères métier précis (motorisation exacte, kilométrage, prix).
 	•	Analyser et scorer les annonces par pertinence.
-	•	Retourner un top des meilleures annonces, prêtes à être consultées.
+	•	Retourner un top intelligent des meilleures annonces, prêt à être consulté.
 
 ⸻
 
 ⚙️ Fonctionnalités principales
 
-🔎 Recherche ciblée - /search
-	•	Input :
-	•	Mot-clé de recherche (ex : “Audi A7 3.0 TDI 245 S-Line”)
-	•	Critères de filtre :
-	•	Année mini
-	•	Année maxi
-	•	Finition S-line
+🔎 Recherche ciblée et Scoring intelligent — /graphql
+	•	Mutation GraphQL :
+	•	Scraper Leboncoin en temps réel selon ta recherche.
+	•	Filtrer automatiquement selon :
+	•	Année mini / maxi
+	•	Kilométrage maximum
 	•	Motorisation obligatoire
-	•	Traitement :
-	•	Scraping Leboncoin.
-	•	Extraction d’informations brutes.
-	•	Filtrage strict selon critères métier.
-	•	Output :
-	•	JSON listant toutes les annonces filtrées.
-
-🧠 Scoring d’annonces - /score
-	•	Input :
-	•	JSON d’annonces (sortie de /search)
-	•	Traitement :
-	•	Embedding des textes.
-	•	Similarité avec recherche initiale.
-	•	Règles métier (kilométrage, prix, finition, etc.)
-	•	Output :
-	•	JSON des X meilleures annonces classées avec leurs scores.
+	•	Finition (ex: S-Line obligatoire)
+	•	Mutation GraphQL :
+	•	Appliquer un scoring intelligent sur les annonces filtrées :
+	•	Embedding (PhraseTransformer)
+	•	Calcul de similarité
+	•	Règles métier sur kilométrage, prix, finition
+	•	Résultat :
+	•	Retourner directement un JSON GraphQL avec les meilleures annonces triées.
 
 ⸻
 
 📚 Stack technique
-	•	FastAPI — Serveur d’API léger et rapide.
+	•	FastAPI — Serveur API ultra-léger.
+	•	Strawberry GraphQL — API en GraphQL moderne.
 	•	BeautifulSoup ou Playwright — Scraping web.
-	•	SentenceTransformers — Embedding de textes pour la similarité.
+	•	SentenceTransformers — Embedding de texte pour similarité intelligente.
 	•	scikit-learn — Calculs de similarité cosine.
 	•	Docker — Containerisation.
 	•	Poetry — Gestion des dépendances.
-	•	GraphQL (évolution possible avec Strawberry).
 
 ⸻
 
 🛠️ Installation
-
-1. Cloner le projet
+	1.	Cloner le projet :
 
 git clone <repo-url>
 cd perfectdeal-api
 
-2. Lancer l’application avec Docker
+	2.	Lancer l’application avec Docker :
 
 make build
 make up
 
-L’API sera disponible sur : http://127.0.0.1:8000
+	3.	Accéder à l’API :
+
+	•	GraphQL Playground : http://127.0.0.1:8000/graphql
 
 ⸻
 
 📜 Documentation API
-	•	Swagger UI : http://127.0.0.1:8000/docs
-	•	ReDoc : http://127.0.0.1:8000/redoc
+	•	Interface GraphQL (interactive) : http://127.0.0.1:8000/graphql
 
 ⸻
 
@@ -84,48 +75,48 @@ make restart	Restart rapide
 make shell	Ouvre un shell dans le container
 make logs	Voir les logs du container
 
+
+
 ⸻
 
-🧱 Architecture technique (prévue)
+🧱 Architecture technique (évolutive)
 
 app/
-├── main.py              # Entrée FastAPI
+├── main.py               # Entrée FastAPI
 ├── api/
-│   ├── routes/
-│   │   ├── search.py    # Endpoint /search
-│   │   └── score.py     # Endpoint /score
-│   └── models/
-│       └── schemas.py   # Schémas Pydantic
+│   ├── exposers/
+│   │   ├── resolvers/    # Mutations / Queries GraphQL
+│   │   └── schemas/      # Schémas GraphQL
+├── domains/
+│   └── annonce.py        # Modèle interne d'annonce
 ├── services/
-│   ├── scraper.py       # Scraping Leboncoin
-│   ├── filter.py        # Filtrage métier
-│   ├── scoring.py       # Scoring + Similarité
-│   └── utils.py         # Fonctions utilitaires
+│   ├── scraper.py        # Scraping Leboncoin
+│   ├── filter.py         # Filtrage métier
+│   ├── scoring.py        # Scoring + Similarité
+│   └── utils.py          # Fonctions utilitaires
 ├── data/
-│   └── annonces_raw.json # Stockage temporaire (optionnel)
+│   └── annonces.json     # Données brutes temporaires (optionnel)
 ├── Dockerfile
 ├── pyproject.toml
 └── Makefile
+
+
 
 ⸻
 
 🧠 Scoring de base
 
 Critère	Pondération
-Correspondance moteur/modèle	Très forte (filtrage obligatoire)
+Correspondance moteur/modèle	Très forte
 Kilométrage faible pour l’année	+10%
-Prix compétitif par rapport à l’année	+10%
-Présence finition S-Line / RS-Line	+5%
-Annonce complète (texte, photos)	+5%
+Prix compétitif	+10%
+Présence finition S-Line / RS	+5%
+Annonce complète (texte/photos)	+5%
+
+
 
 ⸻
 
 📝 Notes
-	•	Architecture conçue pour évoluer vers un SaaS minimal plus tard.
-	•	Les pondérations de scoring seront configurables dynamiquement.
-
-⸻
-
-✅ Résumé
-
-PerfectDeal API vise à transformer une recherche pénible sur Leboncoin en un classement intelligent des meilleures affaires auto, selon ton besoin précis.
+	•	Architecture prête pour une évolution vers un SaaS léger.
+	•	Les pondérations de scoring pourront être configurables dynamiquement.
