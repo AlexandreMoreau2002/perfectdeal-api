@@ -3,7 +3,6 @@ name = "perfectdeal-api"
 version = "0.1.0"
 description = "API for PerfectDeal"
 authors = ["Alexandre <moreaualexandre2002@gmail.com>"]
-readme = "README.md"
 packages = [{ include = "app" }]
 
 [tool.poetry.dependencies]
