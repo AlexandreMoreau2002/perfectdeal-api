@@ -24,7 +24,7 @@ Content-Type: application/json
   "query": "mutation createAd($ad: AnnonceInput!) { createAd(ad: $ad) }",
   "variables": {
     "ad": {
-      "title": "Audi A7",
+      "title": "Audi A7 s-line 245ch",
       "price": 26000,
       "year": 2018,
       "mileage": 75000,
@@ -42,4 +42,35 @@ Content-Type: application/json
 
 {
   "query": "query { listAds { title price year mileage url motorization finish description } }"
+}
+
+### Create research
+POST http://localhost:8000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation createResearch($research: ResearchInput!) { createResearch(research: $research) }",
+  "variables": {
+    "research": {
+      "brand": "Audi",
+      "model": "A7",
+      "finish": "S-Line",
+      "motorization": "V6 TDI 215",
+      "yearMin": 2015,
+      "yearMax": 2020,
+      "priceMax": 35000,
+      "mileageMax": 10000,
+      "fuel": "diesel",
+      "transmission": "auto",
+      "freeText": "superbe état"
+    }
+  }
+}
+
+### List research
+POST http://localhost:8000/graphql
+Content-Type: application/json
+
+{
+  "query": "query { listResearches { brand model motorization yearMin yearMax priceMax mileageMax fuel transmission freeText } }"
 }

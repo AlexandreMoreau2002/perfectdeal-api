@@ -1,11 +1,11 @@
 # app/graphql/mutations/annonce_mutation.py
 import strawberry
 from models.annonce import Annonce
-from services.db.memory import ad_repo
+from services.db.memory_ad import ad_repo
 from app_graphql.types.annonce_type import AnnonceInput
 
 @strawberry.type
-class Mutation:
+class AnnonceMutation:
     @strawberry.mutation
     def create_ad(self, ad: AnnonceInput) -> bool:
         ad_pydantic = Annonce(**ad.__dict__)

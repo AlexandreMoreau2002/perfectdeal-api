@@ -1,16 +1,21 @@
-alex@MacBook-Alex perfectdeal-api % tree                                 
+alex@MacBook-Alex perfectdeal-api % tree
 .
 ├── app
 │   ├── __pycache__
 │   │   └── main.cpython-312.pyc
 │   ├── app_graphql
 │   │   ├── mutations
-│   │   │   └── annonce_mutation.py
+│   │   │   ├── annonce_mutation.py
+│   │   │   ├── mutation.py
+│   │   │   └── research_mutation.py
 │   │   ├── queries
-│   │   │   └── annonce_query.py
+│   │   │   ├── annonce_query.py
+│   │   │   ├── query.py
+│   │   │   └── research_query.py
 │   │   ├── schema.py
 │   │   └── types
-│   │       └── annonce_type.py
+│   │       ├── annonce_type.py
+│   │       └── research_type.py
 │   ├── Dockerfile
 │   ├── main.py
 │   ├── Makefile
@@ -20,7 +25,8 @@ alex@MacBook-Alex perfectdeal-api % tree
 │   ├── pyproject.toml
 │   └── services
 │       └── db
-│           └── memory.py
+│           ├── memory_research.py
+│           └── memory_ad.py
 ├── doc
 │   ├── api.http
 │   └── tips.md
@@ -29,4 +35,4 @@ alex@MacBook-Alex perfectdeal-api % tree
 ├── readme.md
 └── tree
 
-11 directories, 18 files
+11 directories, 24 files
