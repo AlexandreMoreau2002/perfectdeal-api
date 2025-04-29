@@ -1,7 +1,7 @@
 # app/graphql/mutations/annonce_mutation.py
 import strawberry
 from models.annonce import Annonce
-from services.db.memory_ad import ad_repo
+from repositories.ad_repository import ad_repo
 from app_graphql.types.annonce_type import AnnonceInput
 
 @strawberry.type

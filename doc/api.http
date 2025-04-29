@@ -72,5 +72,5 @@ POST http://localhost:8000/graphql
 Content-Type: application/json
 
 {
-  "query": "query { listResearches { brand model motorization yearMin yearMax priceMax mileageMax fuel transmission freeText } }"
+  "query": "query { listResearches { brand model motorization yearMin yearMax priceMax mileageMax fuel transmission } }"
 }
