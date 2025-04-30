@@ -5,13 +5,13 @@ SERVICE=perfectdeal_api
 # 🐳 Docker
 # ---------------------------
 
-up:
+start:
 	docker compose up -d
 
 build:
 	docker compose build
 
-start: build up -d
+up: build start
 
 stop: 
 	docker compose stop
@@ -19,7 +19,7 @@ stop:
 down:
 	docker compose down
 
-restart: down up
+restart: down start
 
 # ---------------------------
 # 🧰 Dev utils

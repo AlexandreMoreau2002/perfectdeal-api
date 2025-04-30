@@ -50,7 +50,6 @@ COPY pyproject.toml poetry.lock* ./
 
 # Étape 7 : Installer les dépendances
 RUN poetry install --no-root
-RUN poetry run playwright install chromium
 
 # Étape 8 : Copier tout le code
 COPY . .

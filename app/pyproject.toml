@@ -12,7 +12,8 @@ uvicorn = "^0.34.2"
 strawberry-graphql = "^0.205.0"
 pydantic = "^2.11.3"
 graphql-core = "^3.2.3"
-playwright = "^1.43.0"
+httpx = "^0.28.1"
+python-dotenv = "^1.1.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
