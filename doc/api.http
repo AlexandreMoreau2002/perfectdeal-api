@@ -62,7 +62,7 @@ Content-Type: application/json
       "mileageMax": 10000,
       "fuel": "diesel",
       "transmission": "auto",
-      "freeText": "superbe état"
+      "freeText": "superbe etat"
     }
   }
 }
@@ -72,5 +72,5 @@ POST http://localhost:8000/graphql
 Content-Type: application/json
 
 {
-  "query": "query { listResearches { brand model motorization yearMin yearMax priceMax mileageMax fuel transmission } }"
+  "query": "query { listResearches { brand model motorization yearMin yearMax priceMax mileageMax fuel transmission freeText } }"
 }

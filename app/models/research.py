@@ -12,4 +12,4 @@ class Research(BaseModel):
     mileageMax: Optional[int] = None
     fuel: Optional[str] = None
     transmission: Optional[str] = None
-    free_text: Optional[str] = None
+    freeText: Optional[str] = None
