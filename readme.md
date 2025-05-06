@@ -1,122 +1,53 @@
-PerfectDeal API v1
+# PerfectDeal API — *Projet cloturé* 🚧
 
-⸻
+> **Pourquoi ?** Le but initial était de scrapper Leboncoin (LBC) et de classer intelligemment les annonces auto selon des critères personnels.  
+> Après de multiples tests j'ai constaté qu’il est **à la fois techniquement instable** (anti‑bots agressifs, mises à jour fréquentes du site, absence d’API publique fiable) **et juridiquement risqué** (non‑respect potentiel des CGU et de la législation sur le droit des bases de données) de récupérer et ré‑exploiter les données de LBC à grande échelle.
 
-🎯 Objectif
+---
 
-Développer une API FastAPI + GraphQL intelligente capable de :
-	•	Scraper automatiquement les annonces automobiles ciblées sur Leboncoin.
-	•	Filtrer selon des critères métier précis (motorisation exacte, kilométrage, prix).
-	•	Analyser et scorer les annonces par pertinence.
-	•	Retourner un top intelligent des meilleures annonces, prêt à être consulté.
+## 📝 Ce que le projet m’a apporté
 
-⸻
+| 🚀 Compétence | 🎯 Mise en pratique |
+|--------------|--------------------|
+| **FastAPI**  | Création de ma **première** API REST/GraphQL solide. |
+| **Docker**   | Environnement de dev entièrement containerisé (_Dockerfile_, `docker‑compose.yml`, `Makefile`). |
+| **GraphQL**  | Mise en place de Strawberry‑GraphQL & d’un endpoint `/graphql` interactif. |
+| **Architecture hexagonale légère** | Séparation **services / domaines** pour préparer la scalabilité. |
 
-⚙️ Fonctionnalités principales
+* découvrir FastAPI + GraphQL,
+* comprendre comment dockeriser un micro‑service Python
 
-🔎 Recherche ciblée et Scoring intelligent — /graphql
-	•	Mutation GraphQL :
-	•	Scraper Leboncoin en temps réel selon ta recherche.
-	•	Filtrer automatiquement selon :
-	•	Année mini / maxi
-	•	Kilométrage maximum
-	•	Motorisation obligatoire
-	•	Finition (ex: S-Line obligatoire)
-	•	Mutation GraphQL :
-	•	Appliquer un scoring intelligent sur les annonces filtrées :
-	•	Embedding (PhraseTransformer)
-	•	Calcul de similarité
-	•	Règles métier sur kilométrage, prix, finition
-	•	Résultat :
-	•	Retourner directement un JSON GraphQL avec les meilleures annonces triées.
+---
 
-⸻
+## PerfectDeal API v1 (design initial)
+*(Conservé à titre informatif)*
 
-📚 Stack technique
-	•	FastAPI — Serveur API ultra-léger.
-	•	Strawberry GraphQL — API en GraphQL moderne.
-	•	BeautifulSoup ou Playwright — Scraping web.
-	•	SentenceTransformers — Embedding de texte pour similarité intelligente.
-	•	scikit-learn — Calculs de similarité cosine.
-	•	Docker — Containerisation.
-	•	Poetry — Gestion des dépendances.
+### 🎯 Objectif
 
-⸻
+Développer une API FastAPI + GraphQL intelligente capable de :
 
-🛠️ Installation
-	1.	Cloner le projet :
+* Scraper automatiquement les annonces automobiles ciblées sur Leboncoin.  
+* Filtrer selon des critères métier précis (motorisation exacte, kilométrage, prix).  
+* Analyser et scorer les annonces par pertinence.  
+* Retourner un top intelligent des meilleures annonces.
 
+### ⚙️ Fonctionnalités principales
+
+#### 🔎 Recherche ciblée & Scoring intelligent — `/graphql`
+
+* **Mutation GraphQL** : lance le scraping temps réel selon ta recherche.  
+* **Filtrage automatique** : année mini/maxi, kilométrage max, motorisation, finition (ex. S‑Line).  
+* **Scoring** : embeddings (‌SentenceTransformers) + similarité cosine + règles métier.  
+* **Résultat** : JSON trié par pertinence.
+
+### 📚 Stack technique
+* FastAPI • Strawberry‑GraphQL • BeautifulSoup/Playwright • SentenceTransformers  
+* scikit‑learn • Docker • Poetry
+
+### 🛠️ Installation rapide
+
+```bash
 git clone <repo-url>
 cd perfectdeal-api
-
-	2.	Lancer l’application avec Docker :
-
-make build
-make up
-
-	3.	Accéder à l’API :
-
-	•	GraphQL Playground : http://127.0.0.1:8000/graphql
-
-⸻
-
-📜 Documentation API
-	•	Interface GraphQL (interactive) : http://127.0.0.1:8000/graphql
-
-⸻
-
-🔧 Commandes utiles (Makefile)
-
-Commande	Description
-make build	Build les containers Docker
-make up	Démarre l’application en Docker
-make down	Stoppe les containers
-make restart	Restart rapide
-make shell	Ouvre un shell dans le container
-make logs	Voir les logs du container
-
-
-
-⸻
-
-🧱 Architecture technique (évolutive)
-
-app/
-├── main.py               # Entrée FastAPI
-├── api/
-│   ├── exposers/
-│   │   ├── resolvers/    # Mutations / Queries GraphQL
-│   │   └── schemas/      # Schémas GraphQL
-├── domains/
-│   └── annonce.py        # Modèle interne d'annonce
-├── services/
-│   ├── scraper.py        # Scraping Leboncoin
-│   ├── filter.py         # Filtrage métier
-│   ├── scoring.py        # Scoring + Similarité
-│   └── utils.py          # Fonctions utilitaires
-├── data/
-│   └── annonces.json     # Données brutes temporaires (optionnel)
-├── Dockerfile
-├── pyproject.toml
-└── Makefile
-
-
-
-⸻
-
-🧠 Scoring de base
-
-Critère	Pondération
-Correspondance moteur/modèle	Très forte
-Kilométrage faible pour l’année	+10%
-Prix compétitif	+10%
-Présence finition S-Line / RS	+5%
-Annonce complète (texte/photos)	+5%
-
-
-
-⸻
-
-📝 Notes
-	•	Architecture prête pour une évolution vers un SaaS léger.
-	•	Les pondérations de scoring pourront être configurables dynamiquement.
+make build   # build Docker images
+make up      # lance l'API sur http://127.0.0.1:8000
